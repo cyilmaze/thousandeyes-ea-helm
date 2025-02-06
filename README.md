@@ -1,5 +1,5 @@
 # ThousandEyes Enterprise Agent Kubernetes Helm Chart
-### Deploy ThousandEyes Enterprise Agent on Kubernetes Cluster
+### Deploy ThousandEyes Enterprise Agent on Kubernetes Cluster using Helm
 
 Disclaimer: This repository contains non-official scripts. Please refer to ThousandEyes Documentation for official deployment models.
 
@@ -7,14 +7,18 @@ Disclaimer: This repository contains non-official scripts. Please refer to Thous
 ```
 https://helm.sh/docs/intro/install/
 ```
-<ins>Installation</ins>
+### Quick Install for MacOS - Homebrew
+```
+brew install helm
+``` 
+<ins>Deploy ThousandEyes Enterprise Agent</ins>
 1. Run the following commands on your host
 ```
 curl -Os https://downloads.thousandeyes.com/bbot/configure_docker.sh
 chmod +x configure_docker.sh
 sudo ./configure_docker.sh
 ```
-2. Kuberentes requires seccomp profiles files under directory /var/lib/kubelet/seccomp. Crete the seccomp directory.
+2. Kubernetes requires seccomp profiles files under directory /var/lib/kubelet/seccomp. Crete the seccomp directory.
 ```
 sudo mkdir /var/lib/kubelet/seccomp
 ```
@@ -22,7 +26,7 @@ sudo mkdir /var/lib/kubelet/seccomp
 ```
 sudo cp /var/docker/configs/te-seccomp.json /var/lib/kubelet/seccomp/
 ```
-4. Clone this repository to your server or management machines
+4. Add this helm repository to your server or management machines
 ```
 helm repo add thousandeyes-ea-helm https://cyilmaze.github.io/thousandeyes-ea-helm
 helm repo update
@@ -37,5 +41,5 @@ helm install thousandeyes thousandeyes-ea-helm/thousandeyes-ea-helm -n your-name
 ```
 7. Verify pod is Running
 ```
-kubectl get pods -n thousandeyes
+kubectl get pods -n your-namespace
 ```
