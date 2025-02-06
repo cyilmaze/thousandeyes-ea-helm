@@ -24,7 +24,7 @@ sudo cp /var/docker/configs/te-seccomp.json /var/lib/kubelet/seccomp/
 ```
 4. Clone this repository to your server or management machines
 ```
-helm repo add thousandeyes-ea-helm https://github.com/cyilmaze/thousandeyes-ea-helm
+helm repo add thousandeyes-ea-helm https://cyilmaze.github.io/thousandeyes-ea-helm
 helm repo update
 ```
 5.Create the TEAGENT_ACCOUNT_TOKEN variable in thousandeyes-credentials secret with your ThousandEyes Account Group Token
