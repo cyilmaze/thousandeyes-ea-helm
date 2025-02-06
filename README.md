@@ -20,16 +20,15 @@ sudo cp /var/docker/configs/te-seccomp.json /var/lib/kubelet/seccomp/
 ```
 4. Clone this repository to your server or management machines
 ```
-git clone https://github.com/cyilmaze/thousandeyes-ea-kubernetes.git
+helm repo add thousandeyes-ea-helm https://github.com/cyilmaze/thousandeyes-ea-helm
+helm repo update
 ```
 5.Create the TEAGENT_ACCOUNT_TOKEN variable in thousandeyes-credentials secret with your ThousandEyes Account Group Token
 ```
 kubectl create secret generic thousandeyes-credentials --from-literal=TEAGENT_ACCOUNT_TOKEN=your-super-te-account-token -n your-namespace
 ```
-6. Apply manifests files to deploy agent
+6. Apply chart to deploy agent
 ```
-helm repo add thousandeyes-ea-helm https://github.com/cyilmaze/thousandeyes-ea-helm
-helm repo update
 helm install thousandeyes thousandeyes-ea-helm/thousandeyes-ea-helm -n your-namespace
 ```
 7. Verify pod is Running
