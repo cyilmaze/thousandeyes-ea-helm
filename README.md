@@ -3,6 +3,10 @@
 
 Disclaimer: This repository contains non-official scripts. Please refer to ThousandEyes Documentation for official deployment models.
 
+<ins> Install Helm <ins>
+```
+https://helm.sh/docs/intro/install/
+```
 <ins>Installation</ins>
 1. Run the following commands on your host
 ```
