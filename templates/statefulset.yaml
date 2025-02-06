@@ -15,6 +15,18 @@ spec:
       labels:
         app: {{ .Release.Name }}
     spec:
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       containers:
         - name: {{ .Release.Name }}
           image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
@@ -52,24 +64,12 @@ spec:
               protocol: {{ .Values.service.protocol }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-      {{- with .Values.nodeSelector }}
-      nodeSelector:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.affinity }}
-      affinity:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.tolerations }}
-      tolerations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.volumeClaimTemplates }}
-      volumeClaimTemplates:
-        {{- toYaml . | nindent 4 }}
-      {{- end }}
-        - metadata:
-            name: thousandeyes-shm-volume
-            emptyDir:
-              medium: Memory
-              sizeLimit: 512M
+      volumes:
+        - name: thousandeyes-shm-volume
+          emptyDir:
+            medium: Memory
+            sizeLimit: 512M
+  {{- with .Values.volumeClaimTemplates }}
+  volumeClaimTemplates:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
