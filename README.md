@@ -31,15 +31,19 @@ sudo cp /var/docker/configs/te-seccomp.json /var/lib/kubelet/seccomp/
 helm repo add thousandeyes-ea-helm https://cyilmaze.github.io/thousandeyes-ea-helm
 helm repo update
 ```
-5.Create the TEAGENT_ACCOUNT_TOKEN variable in thousandeyes-credentials secret with your ThousandEyes Account Group Token
+5. Create thousandeyes namespace
 ```
-kubectl create secret generic thousandeyes-credentials --from-literal=TEAGENT_ACCOUNT_TOKEN=your-super-te-account-token -n your-namespace
+kubectl create namespace thousandeyes
 ```
-6. Apply chart to deploy agent
+6.Create thousandeyes-credentials secret using your ThousandEyes Account Group Token
 ```
-helm install thousandeyes thousandeyes-ea-helm/thousandeyes-ea-helm -n your-namespace
+kubectl create -n thousandeyes secret generic thousandeyes-credentials --from-literal=TEAGENT_ACCOUNT_TOKEN=your-te-account-token
 ```
-7. Verify pod is Running
+7. Apply chart to deploy agent
 ```
-kubectl get pods -n your-namespace
+helm install thousandeyes thousandeyes-ea-helm/thousandeyes-ea-helm
+```
+8. Verify pod is Running
+```
+kubectl get pods -n thousandeyes
 ```
