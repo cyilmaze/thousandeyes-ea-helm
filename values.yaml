@@ -1,0 +1,81 @@
+# Default values for thousandeyes-ea-helm.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+namespace: thousandeyes
+
+replicaCount: 1
+
+image:
+  repository: thousandeyes/enterprise-agent
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+
+nameOverride: ""
+fullnameOverride: ""
+
+securityContext:
+  capabilities:
+    add: ["NET_ADMIN","SYS_ADMIN"]
+  seccompProfile:
+    type: Localhost
+    localhostProfile: te-seccomp.json
+  appArmorProfile:
+    type: Localhost
+    localhostProfile: docker_sandbox
+
+service:
+  type: ClusterIP
+  port: 49153
+  protocol: UDP
+
+resources:
+  requests:
+    memory: 2G
+  limits:
+    memory: 2G
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+volumeClaimTemplates:
+  - metadata:
+      name: thousandeyes-agent
+    spec:
+      accessModes:
+        - ReadWriteOnce
+      resources:
+        requests:
+          storage: {{ .Values.volume.size }}
+      storageClassName: {{ .Values.volume.storageClass }}
+  - metadata:
+      name: thousandeyes-browserbot
+    spec:
+      accessModes:
+        - ReadWriteOnce
+      resources:
+        requests:
+          storage: {{ .Values.volume.size }}
+      storageClassName: {{ .Values.volume.storageClass }}
+  - metadata:
+      name: thousandeyes-log
+    spec:
+      accessModes:
+        - ReadWriteOnce
+      resources:
+        requests:
+          storage: {{ .Values.volume.size }}
+      storageClassName: {{ .Values.volume.storageClass }}
+  - metadata:
+      name: thousandeyes-shm-volume
+    spec:
+      accessModes:
+        - ReadWriteOnce
+      resources:
+        requests:
+          storage: {{ .Values.volume.size }}
+      storageClassName: {{ .Values.volume.storageClass }}
