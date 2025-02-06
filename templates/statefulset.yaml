@@ -70,6 +70,6 @@ spec:
   {{- end }}
   volumes:
     - name: thousandeyes-shm-volume
-    emptyDir:
-      medium: Memory
-      sizeLimit: 512M
+      emptyDir:
+        medium: Memory
+        sizeLimit: 512M
