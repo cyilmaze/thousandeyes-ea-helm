@@ -52,6 +52,11 @@ spec:
               protocol: {{ .Values.service.protocol }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+      volumes:
+        - name: thousandeyes-shm-volume
+          emptyDir:
+            medium: Memory
+            sizeLimit: 512M
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
@@ -68,8 +73,3 @@ spec:
       volumeClaimTemplates:
         {{- toYaml . | nindent 4 }}
       {{- end }}
-      volumes:
-        - name: thousandeyes-shm-volume
-          emptyDir:
-            medium: Memory
-            sizeLimit: 512M
