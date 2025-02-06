@@ -2,28 +2,16 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-namespace: thousandeyes
-
 replicaCount: 1
 
 image:
   repository: thousandeyes/enterprise-agent
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: "latest"
 
 nameOverride: ""
 fullnameOverride: ""
-
-securityContext:
-  capabilities:
-    add: ["NET_ADMIN","SYS_ADMIN"]
-  seccompProfile:
-    type: Localhost
-    localhostProfile: te-seccomp.json
-  appArmorProfile:
-    type: Localhost
-    localhostProfile: docker_sandbox
 
 service:
   type: ClusterIP
@@ -50,8 +38,8 @@ volumeClaimTemplates:
         - ReadWriteOnce
       resources:
         requests:
-          storage: {{ .Values.volume.size }}
-      storageClassName: {{ .Values.volume.storageClass }}
+          storage: 500Mi
+      # storageClassName:
   - metadata:
       name: thousandeyes-browserbot
     spec:
@@ -59,8 +47,8 @@ volumeClaimTemplates:
         - ReadWriteOnce
       resources:
         requests:
-          storage: {{ .Values.volume.size }}
-      storageClassName: {{ .Values.volume.storageClass }}
+          storage: 500Mi
+      # storageClassName: 
   - metadata:
       name: thousandeyes-log
     spec:
@@ -68,14 +56,5 @@ volumeClaimTemplates:
         - ReadWriteOnce
       resources:
         requests:
-          storage: {{ .Values.volume.size }}
-      storageClassName: {{ .Values.volume.storageClass }}
-  - metadata:
-      name: thousandeyes-shm-volume
-    spec:
-      accessModes:
-        - ReadWriteOnce
-      resources:
-        requests:
-          storage: {{ .Values.volume.size }}
-      storageClassName: {{ .Values.volume.storageClass }}
+          storage: 500Mi
+      # storageClassName: 
