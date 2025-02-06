@@ -41,7 +41,7 @@ kubectl create -n thousandeyes secret generic thousandeyes-credentials --from-li
 ```
 7. Apply chart to deploy agent
 ```
-helm install thousandeyes thousandeyes-ea-helm/thousandeyes-ea-helm
+helm install -n thousandeyes thousandeyes thousandeyes-ea-helm/thousandeyes-ea-helm
 ```
 8. Verify pod is Running
 ```
