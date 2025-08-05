@@ -39,7 +39,7 @@ spec:
               localhostProfile: te-seccomp.json
             appArmorProfile:
               type: Localhost
-              localhostProfile: docker_sandbox
+              localhostProfile: te-apparmor.json
           args:
             - /sbin/my_init
           env:
