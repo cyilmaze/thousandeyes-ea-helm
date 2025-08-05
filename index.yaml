@@ -3,12 +3,22 @@ entries:
   thousandeyes-ea-helm:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-02-06T14:16:23.69069+01:00"
+    created: "2025-08-05T12:17:39.185534+02:00"
     description: A Helm chart for Kubernetes
-    digest: a3fc45f679f2111714944fd77313f7522cef9dd9f285ce75ff328d5a67acd080
+    digest: 39e918a700105f7d3a2865ce61f41e90c6306e7c5e52372ba3081f902adf2f03
+    name: thousandeyes-ea-helm
+    type: application
+    urls:
+    - https://cyilmaze.github.io/thousandeyes-ea-helm/thousandeyes-ea-helm-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-08-05T12:17:39.184058+02:00"
+    description: A Helm chart for Kubernetes
+    digest: d7d0b265764ce3fe95bc1bc6db44fdca70608f5a7950193cf21813243ada09e7
     name: thousandeyes-ea-helm
     type: application
     urls:
     - https://cyilmaze.github.io/thousandeyes-ea-helm/thousandeyes-ea-helm-0.1.0.tgz
     version: 0.1.0
-generated: "2025-02-06T14:16:23.687256+01:00"
+generated: "2025-08-05T12:17:39.182147+02:00"
