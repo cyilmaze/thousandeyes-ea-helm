@@ -39,7 +39,7 @@ spec:
               localhostProfile: te-seccomp.json
             appArmorProfile:
               type: Localhost
-              localhostProfile: te-apparmor.json
+              localhostProfile: te-apparmor.cfg
           args:
             - /sbin/my_init
           env:
